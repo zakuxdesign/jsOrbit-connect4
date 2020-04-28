@@ -53,11 +53,16 @@ export class Model {
   // In the column of last piece
   // ------------------------------------------------------------------------------
   data_CountPiecesInColumn(whoToCheckFor) {
+    this.connectedPieces = 0;
+    //
     for (let piece of this.board[this.lastPieceDropped.column]) {
       if (piece == whoToCheckFor) {
         this.connectedPieces += 1;
       }
     }
+    console.log(
+      `Checking column relative to last dropped: ${this.connectedPieces}`
+    );
   }
 
   //
@@ -71,6 +76,8 @@ export class Model {
   // In the row of last piece
   // ------------------------------------------------------------------------------
   data_CountPiecesInRow(whoToCheckFor) {
+    this.connectedPieces = 0;
+    //
     for (let column in this.board) {
       for (let row in this.board[column]) {
         if (row == this.lastPieceDropped.row) {
@@ -80,6 +87,9 @@ export class Model {
         }
       }
     }
+    console.log(
+      `Checking row relative to last dropped: ${this.connectedPieces}`
+    );
   }
 
   //
@@ -93,6 +103,8 @@ export class Model {
   // In incline direction going upwards
   // ------------------------------------------------------------------------------
   data_CountPiecesInIncreaseUpward(whoToCheckFor) {
+    this.connectedPieces = 0;
+    //
     if (
       this.board[this.lastPieceDropped.column + 1] != undefined &&
       this.board[this.lastPieceDropped.row - 1] != undefined &&
@@ -124,6 +136,9 @@ export class Model {
         }
       }
     }
+    console.log(
+      `Checking increase upward relative to last dropped: ${this.connectedPieces}`
+    );
   }
 
   //
@@ -137,6 +152,8 @@ export class Model {
   // In incline direction going downwards
   // ------------------------------------------------------------------------------
   data_CountPiecesInIncreaseDownward(whoToCheckFor) {
+    this.connectedPieces = 0;
+    //
     if (
       this.board[this.lastPieceDropped.column + 1] != undefined &&
       this.board[this.lastPieceDropped.row + 1] != undefined &&
@@ -168,6 +185,9 @@ export class Model {
         }
       }
     }
+    console.log(
+      `Checking increase downward relative to last dropped: ${this.connectedPieces}`
+    );
   }
 
   //
@@ -181,6 +201,8 @@ export class Model {
   // In decline direction going upwards
   // ------------------------------------------------------------------------------
   data_CountPiecesInDecreaseUpward(whoToCheckFor) {
+    this.connectedPieces = 0;
+    //
     if (
       this.board[this.lastPieceDropped.column - 1] != undefined &&
       this.board[this.lastPieceDropped.row + 1] != undefined &&
@@ -208,6 +230,9 @@ export class Model {
         }
       }
     }
+    console.log(
+      `Checking decrease upward relative to last dropped: ${this.connectedPieces}`
+    );
   }
 
   //
@@ -221,6 +246,8 @@ export class Model {
   // In decline direction going downwards
   // ------------------------------------------------------------------------------
   data_CountPiecesInDecreaseDownward(whoToCheckFor) {
+    this.connectedPieces = 0;
+    //
     if (
       this.board[this.lastPieceDropped.column - 1] != undefined &&
       this.board[this.lastPieceDropped.row - 1] != undefined &&
@@ -248,6 +275,9 @@ export class Model {
         }
       }
     }
+    console.log(
+      `Checking decrease downward relative to last dropped: ${this.connectedPieces}`
+    );
   }
 
   //
@@ -262,7 +292,6 @@ export class Model {
   // then it goes to next row
   // ------------------------------------------------------------------------------
   data_ComputerChoseFirstTurn() {
-    console.log("hello");
     const selectRandomColumn = (max) => {
       return Math.floor(Math.random() * Math.floor(max));
     };
@@ -272,12 +301,10 @@ export class Model {
       this.board[randomColumnNumber][4] = "computer";
       this.lastComputerPiece.column = randomColumnNumber;
       this.lastComputerPiece.row = 4;
-      console.log(this.lastComputerPiece);
     } else {
       this.board[randomColumnNumber][5] = "computer";
       this.lastComputerPiece.column = randomColumnNumber;
       this.lastComputerPiece.row = 5;
-      console.log(this.lastComputerPiece);
     }
   }
 
